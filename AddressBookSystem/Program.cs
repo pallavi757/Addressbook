@@ -68,6 +68,36 @@ namespace AddressBookSystem
             ContactInfoList.Add(contactInfo);
             ContactInfoMap.Add(FirstName, contactInfo);
         }
+        //Uc3
+        public void EditInfo(string key)
+        {
+            if(ContactInfoMap.ContainsKey(key))
+            {
+                Console.WriteLine("Enter your first name:");
+                string FirstName = Console.ReadLine();
+                Console.WriteLine("Enter your last name:");
+                string LastName = Console.ReadLine();
+                Console.WriteLine("Enter your email:");
+                string Email = Console.ReadLine();
+                Console.WriteLine("Enter your Phone number:");
+                int PhoneNumber = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter your Address:");
+                string Address = Console.ReadLine();
+                Console.WriteLine("Enter your City:");
+                string City = Console.ReadLine();
+                Console.WriteLine("Enter your State:");
+                string State = Console.ReadLine();
+                Console.WriteLine("Enter your Zipcode:");
+                int ZipCode = Convert.ToInt32(Console.ReadLine());
+                contactInfo contactInfo = new contactInfo(FirstName, LastName, Email, PhoneNumber, Address, City, State, ZipCode);
+                ContactInfoList.Add(contactInfo);
+                ContactInfoMap[key] = contactInfo;
+            }
+            else
+            {
+                Console.WriteLine("Key not found");
+            }
+        }
         public void DisplayInfo()
         {
             foreach (contactInfo contact in ContactInfoList)
@@ -83,6 +113,7 @@ namespace AddressBookSystem
             {
                 Console.WriteLine("1 for Adding Infomarmation");
                 Console.WriteLine("2 for Display Infomarmation");
+                Console.WriteLine("3 for Edit Infomarmation");
                 Console.WriteLine("0 for Exit");
                 try
                 {
@@ -95,9 +126,18 @@ namespace AddressBookSystem
                         case 2:
                             Info.DisplayInfo();
                             break;
+                        case 3:
+                            Console.WriteLine("Enter first name to edit");
+                            string key=Console.ReadLine();
+                            Info.EditInfo(key);
+                            break;
                         case 0:
                             Console.WriteLine("Exit");
                             break;
+                        default:
+                            Console.WriteLine("wrong key");
+                            break;
+
                     }
                 }
                 catch (Exception)

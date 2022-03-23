@@ -26,7 +26,7 @@ namespace AddressBookSystem
             this.ZipCode = ZipCode;
         }
         //Uc2
-        public string toString()
+        public override string ToString()
         {
             return " Information Of " + FirstName + " " + LastName + " are: " +"\n"
                                                                               + "Email: " + Email +"\n"+ "PhoneNumber: " + PhoneNumber +"\n" 
@@ -100,10 +100,28 @@ namespace AddressBookSystem
         }
         public void DisplayInfo()
         {
-            foreach (contactInfo contact in ContactInfoList)
-                Console.WriteLine(contact.toString());
+            foreach (KeyValuePair<string, contactInfo> item in ContactInfoMap)
+            {
+                Console.WriteLine(item.Value);
+            }
+            //foreach (contactInfo contact in ContactInfoList)
+            //    Console.WriteLine(contact.toString());
         }
 
+        public void DeleteInfo()
+        {
+            Console.WriteLine("Enter the key to delete contact ");
+            string Input = Console.ReadLine();
+            if(ContactInfoMap.ContainsKey(Input.ToLower()))
+            {
+                ContactInfoMap.Remove(Input.ToLower()); 
+            }
+            else
+            {
+                Console.WriteLine("Key is not found");
+            }
+        }
+       
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book");
@@ -114,6 +132,7 @@ namespace AddressBookSystem
                 Console.WriteLine("1 for Adding Infomarmation");
                 Console.WriteLine("2 for Display Infomarmation");
                 Console.WriteLine("3 for Edit Infomarmation");
+                Console.WriteLine("4 for Delete Infomarmation");
                 Console.WriteLine("0 for Exit");
                 try
                 {
@@ -130,6 +149,9 @@ namespace AddressBookSystem
                             Console.WriteLine("Enter first name to edit");
                             string key=Console.ReadLine();
                             Info.EditInfo(key);
+                            break;
+                        case 4:
+                            Info.DeleteInfo();
                             break;
                         case 0:
                             Console.WriteLine("Exit");

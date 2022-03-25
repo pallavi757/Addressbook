@@ -41,32 +41,40 @@ namespace AddressBookSystem
     {
         private ArrayList ContactInfoList;
         private Dictionary<string, contactInfo> ContactInfoMap;
+       
         public Program()
         {
             ContactInfoList = new ArrayList();
             ContactInfoMap = new Dictionary<string, contactInfo>();
+            
         }
         public void AddInfo()
         {
-            Console.WriteLine("Enter your first name:");
-            string FirstName = Console.ReadLine();
-            Console.WriteLine("Enter your last name:");
-            string LastName = Console.ReadLine();
-            Console.WriteLine("Enter your email:");
-            string Email = Console.ReadLine();
-            Console.WriteLine("Enter your Phone number:");
-            int PhoneNumber =Convert.ToInt32 (Console.ReadLine());
-            Console.WriteLine("Enter your Address:");
-            string Address = Console.ReadLine();
-            Console.WriteLine("Enter your City:");
-            string City = Console.ReadLine();
-            Console.WriteLine("Enter your State:");
-            string State = Console.ReadLine();
-            Console.WriteLine("Enter your Zipcode:");
-            int ZipCode =Convert.ToInt32(Console.ReadLine());
-            contactInfo contactInfo = new contactInfo(FirstName, LastName, Email, PhoneNumber, Address, City, State, ZipCode);
-            ContactInfoList.Add(contactInfo);
-            ContactInfoMap.Add(FirstName, contactInfo);
+            int Person;
+            Console.WriteLine("Enter a how many persons to add to Addressbook");
+            Person=int.Parse(Console.ReadLine());
+            for (int i = 0; i <= Person; i++)
+            {
+                Console.WriteLine("Enter your first name:");
+                string FirstName = Console.ReadLine();
+                Console.WriteLine("Enter your last name:");
+                string LastName = Console.ReadLine();
+                Console.WriteLine("Enter your email:");
+                string Email = Console.ReadLine();
+                Console.WriteLine("Enter your Phone number:");
+                int PhoneNumber = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter your Address:");
+                string Address = Console.ReadLine();
+                Console.WriteLine("Enter your City:");
+                string City = Console.ReadLine();
+                Console.WriteLine("Enter your State:");
+                string State = Console.ReadLine();
+                Console.WriteLine("Enter your Zipcode:");
+                int ZipCode = Convert.ToInt32(Console.ReadLine());
+                contactInfo contactInfo = new contactInfo(FirstName, LastName, Email, PhoneNumber, Address, City, State, ZipCode);
+                ContactInfoList.Add(contactInfo);
+                ContactInfoMap.Add(FirstName, contactInfo);
+            }
         }
         //Uc3
         public void EditInfo(string key)
@@ -121,7 +129,9 @@ namespace AddressBookSystem
                 Console.WriteLine("Key is not found");
             }
         }
+
        
+
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book");

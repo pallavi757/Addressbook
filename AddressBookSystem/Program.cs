@@ -14,6 +14,11 @@ namespace AddressBookSystem
         public string City;
         public string State;
         public int ZipCode;
+
+        public contactInfo()
+        {
+        }
+
         public contactInfo(string FirstName, string LastName, string Email, int PhoneNumber, string Address, string City, string State, int ZipCode)
         {
             this.FirstName = FirstName;
@@ -35,19 +40,23 @@ namespace AddressBookSystem
         }
 
 
+
     }
 
     class Program
     {
         private ArrayList ContactInfoList;
         private Dictionary<string, contactInfo> ContactInfoMap;
-       
+        private Dictionary<string, contactInfo> addressBookDictionary;
+
         public Program()
         {
             ContactInfoList = new ArrayList();
             ContactInfoMap = new Dictionary<string, contactInfo>();
-            
+           // addressBookDictionary = new Dictionary<string, contactInfo>();
         }
+           
+        
         public void AddInfo()
         {
             int Person;
@@ -71,10 +80,11 @@ namespace AddressBookSystem
                 string State = Console.ReadLine();
                 Console.WriteLine("Enter your Zipcode:");
                 int ZipCode = Convert.ToInt32(Console.ReadLine());
-                contactInfo contactInfo = new contactInfo(FirstName, LastName, Email, PhoneNumber, Address, City, State, ZipCode);
-                ContactInfoList.Add(contactInfo);
-                ContactInfoMap.Add(FirstName, contactInfo);
+                contactInfo contact = new contactInfo(FirstName, LastName, Email, PhoneNumber, Address, City, State, ZipCode);
+                ContactInfoList.Add(contact);
+                ContactInfoMap.Add(FirstName, contact);
             }
+               
         }
         //Uc3
         public void EditInfo(string key)
@@ -97,9 +107,9 @@ namespace AddressBookSystem
                 string State = Console.ReadLine();
                 Console.WriteLine("Enter your Zipcode:");
                 int ZipCode = Convert.ToInt32(Console.ReadLine());
-                contactInfo contactInfo = new contactInfo(FirstName, LastName, Email, PhoneNumber, Address, City, State, ZipCode);
-                ContactInfoList.Add(contactInfo);
-                ContactInfoMap[key] = contactInfo;
+                contactInfo contact = new contactInfo(FirstName, LastName, Email, PhoneNumber, Address, City, State, ZipCode);
+                ContactInfoList.Add(contact);
+                ContactInfoMap[key] = contact;
             }
             else
             {
@@ -115,7 +125,7 @@ namespace AddressBookSystem
             //foreach (contactInfo contact in ContactInfoList)
             //    Console.WriteLine(contact.toString());
         }
-
+        
         public void DeleteInfo()
         {
             Console.WriteLine("Enter the key to delete contact ");
@@ -129,13 +139,28 @@ namespace AddressBookSystem
                 Console.WriteLine("Key is not found");
             }
         }
-
-       
+        //UC6
+        public class AddressBookCollection   //Add multiple address book
+        {
+            public Dictionary<string, contactInfo> addressBookDictionary;
+            public AddressBookCollection()
+            {
+                addressBookDictionary = new Dictionary<string, contactInfo>();
+            }
+            public void AddressBookNames()
+            {
+                foreach (var item in addressBookDictionary)
+                {
+                    Console.WriteLine(item.Key);
+                }
+            }
+        }
 
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book");
             int option = 0;
+            AddressBookCollection addressBookCollection = new AddressBookCollection();
             Program Info = new Program();
             do
             {
@@ -143,6 +168,8 @@ namespace AddressBookSystem
                 Console.WriteLine("2 for Display Infomarmation");
                 Console.WriteLine("3 for Edit Infomarmation");
                 Console.WriteLine("4 for Delete Infomarmation");
+                Console.WriteLine("5 for Add multiple Address book");
+                Console.WriteLine("6 for List of address book");
                 Console.WriteLine("0 for Exit");
                 try
                 {
@@ -162,6 +189,20 @@ namespace AddressBookSystem
                             break;
                         case 4:
                             Info.DeleteInfo();
+                            break;
+                        case 5:
+                            Console.WriteLine("Enter New Address Book Name");
+                            string addresBookName = Console.ReadLine();
+                            addressBookCollection.addressBookDictionary.Add(addresBookName, new contactInfo());
+                            Console.WriteLine("Address Book {0} selected.", addresBookName);
+                            // Info.MultiAddressBook();
+                            break;
+                        case 6:
+                            Console.WriteLine("List of all Address Books");
+                            foreach (var item in addressBookCollection.addressBookDictionary)
+                            {
+                                Console.WriteLine(item.Key);
+                            }
                             break;
                         case 0:
                             Console.WriteLine("Exit");

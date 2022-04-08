@@ -42,5 +42,16 @@ namespace AddressBookSystem
                 }
             }
         }
+        public void ViewCountByCityOrState(string city, string state)
+        {
+            foreach (var addressBookEntry in addressBookDictionary)
+            {
+                List<Person> ViewCountByCityOrState = addressBookEntry.Value.addressBook.FindAll(i => (i.city == city) && (i.state == state));
+                foreach (Person person in ViewCountByCityOrState)
+                {
+                    Console.WriteLine($"Total person in {city} are : " + ViewCountByCityOrState.Count);
+                }
+            }
+        }
     }
     }

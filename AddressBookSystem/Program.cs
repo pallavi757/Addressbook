@@ -25,7 +25,8 @@ namespace AddressBookSystem
                 Console.WriteLine("Enter 5 Add New Address Book");
                 Console.WriteLine("Enter 6 List of all Address Book");
                 Console.WriteLine("Enter 7 Search Person in City or State");
-                Console.WriteLine("Enter 8 Exit");
+                Console.WriteLine("8) View Person by City or State");
+                Console.WriteLine("9) Exit");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -70,6 +71,13 @@ namespace AddressBookSystem
                         Console.WriteLine("Enter Last Name");
                         lastName = Console.ReadLine();
                         addressBookCollection.SearchPersonInCityOrState(firstName, lastName);
+                        break;
+                    case 8:
+                        Console.WriteLine("Enter City Name");
+                        string cityName = Console.ReadLine();
+                        Console.WriteLine("Enter State Name");
+                        string stateName = Console.ReadLine();
+                        addressBookCollection.ViewPersonByCityOrState(cityName, stateName);
                         break;
                     default:
                         Console.WriteLine("Invalid input");

@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace AddressBookSystem
 {
-    public class AddressBookCollection
+    class AddressBookCollection
     {
-        public Dictionary<string, AddressBook> addressBookDictionary;//Dictionary collection
-        public AddressBookCollection()
-        {
-            addressBookDictionary = new Dictionary<string, AddressBook>();
-        }
-        public void PrintAllAddressBookNames()
-        {
-            foreach (var AddressBookItem in addressBookDictionary)
+            public Dictionary<string, AddressBook> addressBookDictionary;//Dictionary collection
+            public AddressBookCollection()
             {
-                Console.WriteLine(AddressBookItem.Key);
+                addressBookDictionary = new Dictionary<string, AddressBook>();
             }
-        }
-        public void SearchPersonInCityOrState(string firstName, string lastName)
-        {
-            foreach (var addressBookEntry in addressBookDictionary)
+            public void PrintAllAddressBookNames()
             {
-                List<Person> PersonInCitiesOrStates = addressBookEntry.Value.addressBook.FindAll(i => (i.firstName == firstName) && (i.lastName == lastName));
-                foreach (Person person in PersonInCitiesOrStates)
+                foreach (var AddressBookItem in addressBookDictionary)
                 {
-                    Console.WriteLine($" {person.firstName} {person.lastName} is in {person.city} {person.state}");
+                    Console.WriteLine(AddressBookItem.Key);
+                }
+            }
+            public void SearchPersonInCityOrState(string firstName, string lastName)
+            {
+                foreach (var addressBookEntry in addressBookDictionary)
+                {
+                    List<Person> PersonInCitiesOrStates = addressBookEntry.Value.addressBook.FindAll(i => (i.firstName == firstName) && (i.lastName == lastName));
+                    foreach (Person person in PersonInCitiesOrStates)
+                    {
+                        Console.WriteLine($" {person.firstName} {person.lastName} is in {person.city} {person.state}");
+                    }
                 }
             }
         }
     }
-}

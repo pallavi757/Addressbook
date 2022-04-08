@@ -25,7 +25,7 @@ namespace AddressBookSystem
                 Console.WriteLine("Enter 5 Add New Address Book");
                 Console.WriteLine("Enter 6 List of all Address Book");
                 Console.WriteLine("Enter 7 Search Person in City or State");
-                Console.WriteLine("Enter 0 Exit");
+                Console.WriteLine("Enter 8 Exit");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -80,6 +80,7 @@ namespace AddressBookSystem
 
         }
     }
+    
 }
 
 

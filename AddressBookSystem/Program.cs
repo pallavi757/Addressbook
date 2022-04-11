@@ -29,6 +29,8 @@ namespace AddressBookSystem
                 Console.WriteLine("Enter 9 Count Contact by city or state");
                 Console.WriteLine("Enter 10 Contact sort by Person Name");
                 Console.WriteLine("Enter 11 sort by city state and zip");
+                Console.WriteLine("Enter 12 Read data from file");
+                Console.WriteLine("Enter 13 Write data into file");
                 Console.WriteLine("Enter 0 to Exit");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -94,6 +96,12 @@ namespace AddressBookSystem
                         break;
                     case 11:
                         addressBook.SortByCityStateZip();
+                        break;
+                    case 12:
+                        addressBookCollection.ReadFileFromAddressBook();
+                        break;
+                    case 13:
+                        addressBookCollection.WriteAddressBookCollectionToFiles();
                         break;
                     case 0:
                         Console.WriteLine("Exit");

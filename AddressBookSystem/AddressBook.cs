@@ -8,7 +8,7 @@ namespace AddressBookSystem
 {
     public class AddressBook
     {
-        public List<Person> addressBook;
+        public List<Person> addressBook;// Create List of type person
         public AddressBook()
         {
             addressBook = new List<Person>();
@@ -27,7 +27,7 @@ namespace AddressBookSystem
             personEntered.lastName = Console.ReadLine();
             if (addressBook.Find(i => personEntered.Equals(i)) != null)
             {
-                Console.WriteLine("Person already Exists, enter new person!");
+                Console.WriteLine("Person already exists, enter new person");
                 return;
             }
             Console.WriteLine("Enter Address");
@@ -48,7 +48,7 @@ namespace AddressBookSystem
         {
             if (addressBook.Count == 0)
             {
-                Console.WriteLine("No Names to Display");
+                Console.WriteLine("Nothing to Display");
             }
             foreach (Person person in addressBook)
             {
@@ -109,6 +109,10 @@ namespace AddressBookSystem
                 addressBook.Remove(addressBook[index]);
             else
                 Console.WriteLine("Entry Not found");
+        }
+        public void SortByPersonName()
+        {
+            addressBook.Sort((x, y) => x.firstName.CompareTo(y.firstName));
         }
     }
 }

@@ -8,8 +8,10 @@ namespace AddressBookSystem
 {
     class AddressBookCollection
     {
-            public Dictionary<string, AddressBook> addressBookDictionary;//Dictionary collection
-            public AddressBookCollection()
+        public Dictionary<string, AddressBook> addressBookDictionary;//Dictionary collection
+        public object cityDictionary;
+        public object stateDictionary;
+        public AddressBookCollection()
             {
                 addressBookDictionary = new Dictionary<string, AddressBook>();
             }
@@ -20,14 +22,14 @@ namespace AddressBookSystem
                     Console.WriteLine(AddressBookItem.Key);
                 }
             }
-            public void SearchPersonInCityOrState(string firstName, string lastName)
+            public void SearchPersonInCityOrState(string firstName)
             {
                 foreach (var addressBookEntry in addressBookDictionary)
                 {
-                    List<Person> PersonInCitiesOrStates = addressBookEntry.Value.addressBook.FindAll(i => (i.firstName == firstName) && (i.lastName == lastName));
+                    List<Person> PersonInCitiesOrStates = addressBookEntry.Value.addressBook.FindAll(i => (i.firstName == firstName));
                     foreach (Person person in PersonInCitiesOrStates)
                     {
-                        Console.WriteLine($" {person.firstName} {person.lastName} is in {person.city} {person.state}");
+                        Console.WriteLine($" {person.firstName}  is in {person.city} {person.state}");
                     }
                 }
             }

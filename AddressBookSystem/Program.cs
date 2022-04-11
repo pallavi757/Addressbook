@@ -9,7 +9,7 @@ namespace AddressBookSystem
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Welcome to Address Book!");
+            Console.WriteLine("Welcome to Address Book");
             Console.WriteLine("Enter Address Book Name");
             string addressBookName = Console.ReadLine();
             AddressBookCollection addressBookCollection = new AddressBookCollection();
@@ -27,7 +27,8 @@ namespace AddressBookSystem
                 Console.WriteLine("Enter 7 Search Person in City or State");
                 Console.WriteLine("Enter 8  View Person by City or State");
                 Console.WriteLine("Enter 9 Count Contact by city or state");
-                Console.WriteLine("Enter 10 Exit");
+                Console.WriteLine("Enter 10 Contact sort by Person Name");
+                Console.WriteLine("Enter 11 Exit");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -69,9 +70,9 @@ namespace AddressBookSystem
                     case 7:
                         Console.WriteLine("Enter First Name");
                         firstName = Console.ReadLine();
-                        Console.WriteLine("Enter Last Name");
-                        lastName = Console.ReadLine();
-                        addressBookCollection.SearchPersonInCityOrState(firstName, lastName);
+                        //Console.WriteLine("Enter Last Name");
+                        //lastName = Console.ReadLine();
+                        addressBookCollection.SearchPersonInCityOrState(firstName);
                         break;
                     case 8:
                         Console.WriteLine("Enter City Name");
@@ -87,11 +88,17 @@ namespace AddressBookSystem
                         stateName = Console.ReadLine();
                         addressBookCollection.ViewCountByCityOrState(cityName, stateName);
                         break;
+                    case 10:
+                        addressBook.SortByPersonName();
+                        break;
+                    case 11:
+                        Console.WriteLine("Exit");
+                        break;
                     default:
                         Console.WriteLine("Invalid input");
                         break;
                 }
-            } while (choice != 8);
+            } while (choice !=0);
 
 
         }

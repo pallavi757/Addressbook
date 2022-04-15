@@ -23,7 +23,7 @@ namespace AddressBookSystem
         {
             addressBookDictionary = new Dictionary<string, AddressBook>();
         }
-        public void PrintAllAddressBookNames()
+        public void ShowAddressBookNames()
         {
             foreach (var AddressBookItem in addressBookDictionary)
             {
@@ -107,8 +107,8 @@ namespace AddressBookSystem
             };
             foreach (var AddressBookItem in addressBookDictionary)
             {
-                string filePath = Path + AddressBookItem.Key + ".csv";
-                using (StreamWriter writer = new StreamWriter(filePath))
+                string CSVfilePath = Path + AddressBookItem.Key + ".csv";
+                using (StreamWriter writer = new StreamWriter(CSVfilePath))
               // using var csvWriter=new 
                 using (var csvExport = new CsvWriter(writer, config))
                 {
@@ -134,8 +134,8 @@ namespace AddressBookSystem
         }
         public void ReadDataFromCSVFiles()
         {
-            string filePath = @"H:\VS\Addressbook\AddressBookSystem\CsvFile\";
-            string[] file = Directory.GetFiles(filePath, "*.csv");
+            string CSVfilePath = @"H:\VS\Addressbook\AddressBookSystem\CsvFile\";
+            string[] file = Directory.GetFiles(CSVfilePath, "*.csv");
             foreach (var presentFiles in file)
             {
                 using (StreamReader streamReader = File.OpenText(presentFiles))
@@ -148,7 +148,29 @@ namespace AddressBookSystem
                 }
             }
         }
-       
+        public void WriteToJsonFiles()
+        {
+            string JsonfolderPath = @"H:\VS\Addressbook\AddressBookSystem\JsonFile\";
+            foreach (var AddressBookItem in addressBookDictionary)
+            {
+                string filePath = JsonfolderPath + AddressBookItem.Key + ".json";
+                JsonSerializer serializer = new JsonSerializer();
+                using (StreamWriter writer = new StreamWriter(filePath))
+                using (JsonWriter jsonWriter = new JsonTextWriter(writer))
+                {
+                    serializer.Serialize(writer, AddressBookItem.Value.addressBook);
+                }
+            }
+        }
+        public void ReadFromJsonFiles()
+        {
+            string JsonfolderPath = @"H:\VS\Addressbook\AddressBookSystem\JsonFile\";
+            string result = File.ReadAllText(JsonfolderPath);
+            List<Person> contact = JsonConvert.DeserializeObject<List<Person>>(result);
+            Console.WriteLine("Successfully read records from the file" + contact);
+
+        }
+
     }
 }
    

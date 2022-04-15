@@ -33,6 +33,8 @@ namespace AddressBookSystem
                 Console.WriteLine("Enter 13 Write data into file");
                 Console.WriteLine("Enter 14 Read data from csv file");
                 Console.WriteLine("Enter 15 Write data into csv file");
+                Console.WriteLine("Enter 16 Read data from JSON file");
+                Console.WriteLine("Enter 17 Write data into JSON file");
                 Console.WriteLine("Enter 0 to Exit");
                 choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -69,14 +71,11 @@ namespace AddressBookSystem
                         {
                             Console.WriteLine(addressBookEntry.Key);
                         }
-                        Console.WriteLine("Select an Address Book");
-                        addressBookName = Console.ReadLine();
+                        
                         break;
                     case 7:
                         Console.WriteLine("Enter First Name");
-                        firstName = Console.ReadLine();
-                        //Console.WriteLine("Enter Last Name");
-                        //lastName = Console.ReadLine();
+                        firstName = Console.ReadLine();                     
                         addressBookCollection.SearchPersonInCityOrState(firstName);
                         break;
                     case 8:
@@ -110,6 +109,12 @@ namespace AddressBookSystem
                         break;
                     case 15:
                         addressBookCollection.ReadDataFromCSVFiles();
+                        break;
+                    case 16:
+                        addressBookCollection.ReadFromJsonFiles();
+                        break;
+                    case 17:
+                        addressBookCollection.WriteToJsonFiles();
                         break;
                     case 0:
                         Console.WriteLine("Exit");
